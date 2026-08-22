@@ -12,6 +12,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback
     setTimeout(() => preloader.classList.add('hidden'), 3000);
 
+    // --- Hero background load + image error fallback ---
+    const heroBgImg = document.querySelector('.hero-bg-img');
+    if (heroBgImg) {
+        if (heroBgImg.complete && heroBgImg.naturalWidth > 0) heroBgImg.classList.add('loaded');
+        else {
+            heroBgImg.addEventListener('load', () => heroBgImg.classList.add('loaded'), { once: true });
+            heroBgImg.addEventListener('error', () => {
+                // fallback warm interior if primary fails
+                heroBgImg.src = 'https://images.unsplash.com/photo-1616046229478-9901c5536daa?w=1920&q=80&auto=format&fit=crop';
+                heroBgImg.classList.add('loaded');
+            }, { once: true });
+        }
+    }
+    // Global fallback for any broken Unsplash / furniture image
+    const FALLBACK_FURNITURE = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&auto=format&fit=crop';
+    document.querySelectorAll('img').forEach(img => {
+        // Skip hero already handled
+        if (img === heroBgImg) return;
+        img.addEventListener('error', () => {
+            if (img.dataset.fallbackDone) return;
+            img.dataset.fallbackDone = '1';
+            img.classList.add('broken');
+            const parent = img.closest('.item-image');
+            if (parent) parent.classList.add('has-error');
+            // Replace with fallback but keep layout
+            // Use timeout to allow retry with fallback url
+            const isGalleryOrCollection = img.closest('.collection-item, .gallery-item');
+            if (isGalleryOrCollection) {
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = FALLBACK_FURNITURE;
+                    img.classList.remove('broken');
+                    img.style.opacity = '1';
+                    if (parent) parent.classList.remove('has-error');
+                }, 150);
+            }
+        });
+    });
+
     // --- Navbar Scroll ---
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -153,8 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Parallax on hero ---
+    // --- Parallax on hero (disabled on phone for readability + performance) ---
     window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 768) return;
         const hero = document.querySelector('.hero-content');
         if (hero && window.scrollY < window.innerHeight) {
             hero.style.transform = `translateY(${window.scrollY * 0.3}px)`;
@@ -162,18 +202,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Image placeholder hover tilt effect ---
-    document.querySelectorAll('.collection-item').forEach(item => {
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            item.style.transform = `translateY(-8px) perspective(600px) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
+    // --- Image placeholder hover tilt effect (disable on touch devices) ---
+    const isTouch = 'ontouchstart' in window || window.matchMedia('(max-width:768px)').matches;
+    if (!isTouch) {
+        document.querySelectorAll('.collection-item').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                item.style.transform = `translateY(-8px) perspective(600px) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0) perspective(600px) rotateX(0) rotateY(0)';
+            });
         });
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translateY(0) perspective(600px) rotateX(0) rotateY(0)';
-        });
-    });
+    }
 
     // --- Typing effect on hero subtitle ---
     const heroSubtitle = document.querySelector('.hero-subtitle');
