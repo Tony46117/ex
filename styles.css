@@ -1,9 +1,9 @@
 /* ============================================
    Bremer House - Ex-German Furniture & Antiques
    Theme: Light Brown, Dark Brown, White
+   No rounded corners — sharp, professional look
    ============================================ */
 
-/* --- CSS Variables --- */
 :root {
     --brown-dark: #3E2723;
     --brown-medium: #5D4037;
@@ -19,15 +19,12 @@
     --shadow-sm: 0 2px 8px rgba(62,39,35,0.08);
     --shadow-md: 0 8px 30px rgba(62,39,35,0.12);
     --shadow-lg: 0 20px 60px rgba(62,39,35,0.15);
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
     --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --font-display: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 }
 
-/* --- Reset & Base --- */
+/* --- Reset --- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
@@ -57,11 +54,11 @@ img { max-width: 100%; display: block; }
 }
 .loader-bar {
     width: 200px; height: 3px; background: rgba(255,255,255,0.1);
-    border-radius: 3px; overflow: hidden; margin: 0 auto;
+    overflow: hidden; margin: 0 auto;
 }
 .loader-bar::after {
     content: ''; display: block; width: 40%; height: 100%;
-    background: var(--gold); border-radius: 3px;
+    background: var(--gold);
     animation: loader 1.2s ease-in-out infinite;
 }
 @keyframes loader { 0%{transform:translateX(-100%)} 100%{transform:translateX(400%)} }
@@ -83,7 +80,7 @@ img { max-width: 100%; display: block; }
 .nav-logo { display: flex; align-items: center; gap: 12px; }
 .logo-icon {
     width: 44px; height: 44px; background: var(--gold);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     color: var(--brown-dark); font-size: 1.1rem;
 }
 .logo-main {
@@ -96,7 +93,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-menu { display: flex; align-items: center; gap: 2px; list-style: none; }
 .nav-link {
-    padding: 8px 18px; border-radius: 8px; font-size: 0.9rem;
+    padding: 8px 18px; font-size: 0.9rem;
     font-weight: 500; color: rgba(255,255,255,0.8);
     transition: var(--transition); position: relative;
 }
@@ -139,7 +136,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-badge {
     display: inline-block; padding: 6px 18px;
-    border: 1px solid var(--gold); border-radius: 50px;
+    border: 1px solid var(--gold);
     color: var(--gold); font-size: 0.7rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;
 }
@@ -154,18 +151,7 @@ img { max-width: 100%; display: block; }
     font-size: 1rem; color: rgba(255,255,255,0.8);
     max-width: 500px; margin-bottom: 2rem; line-height: 1.8;
 }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.hero-stats {
-    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-}
-.stat { text-align: center; }
-.stat-number {
-    font-family: var(--font-display); font-size: 2rem;
-    font-weight: 700; color: var(--gold);
-}
-.stat-suffix { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); }
-.stat-label { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
-.stat-divider { width: 1px; height: 35px; background: rgba(255,255,255,0.2); }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-scroll {
     position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     z-index: 2; text-align: center;
@@ -185,18 +171,13 @@ img { max-width: 100%; display: block; }
 /* --- Buttons --- */
 .btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 32px; border-radius: 50px; font-weight: 600;
+    padding: 14px 32px; font-weight: 600;
     font-size: 0.9rem; cursor: pointer; border: none;
     transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;
 }
-.btn-primary {
-    background: var(--gold); color: var(--brown-dark);
-}
+.btn-primary { background: var(--gold); color: var(--brown-dark); }
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,169,110,0.4); }
-.btn-outline {
-    background: transparent; color: var(--white);
-    border: 2px solid rgba(255,255,255,0.4);
-}
+.btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 .btn-full { width: 100%; justify-content: center; }
 
@@ -221,7 +202,7 @@ img { max-width: 100%; display: block; }
 }
 .filter-btn {
     padding: 10px 24px; border: 2px solid var(--brown-pale);
-    border-radius: 50px; background: transparent; cursor: pointer;
+    background: transparent; cursor: pointer;
     font-weight: 500; font-size: 0.85rem; color: var(--text-medium);
     transition: var(--transition);
 }
@@ -233,7 +214,7 @@ img { max-width: 100%; display: block; }
     gap: 24px;
 }
 .collection-item {
-    background: var(--white); border-radius: var(--radius-md);
+    background: var(--white);
     overflow: hidden; box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
@@ -254,7 +235,7 @@ img { max-width: 100%; display: block; }
 .collection-item:hover .item-overlay { opacity: 1; }
 .item-btn {
     padding: 12px 28px; background: var(--gold); color: var(--brown-dark);
-    border: none; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+    border: none; font-weight: 600; font-size: 0.85rem;
     cursor: pointer; transform: translateY(20px); transition: var(--transition);
 }
 .collection-item:hover .item-btn { transform: translateY(0); }
@@ -276,7 +257,7 @@ img { max-width: 100%; display: block; }
     gap: 16px;
 }
 .gallery-item {
-    position: relative; border-radius: var(--radius-md); overflow: hidden;
+    position: relative; overflow: hidden;
     cursor: pointer;
 }
 .gallery-item.large { grid-column: span 2; grid-row: span 2; }
@@ -301,12 +282,12 @@ img { max-width: 100%; display: block; }
     align-items: start;
 }
 .map-container {
-    border-radius: var(--radius-lg); overflow: hidden;
+    overflow: hidden;
     box-shadow: var(--shadow-lg);
 }
 .map-container iframe { display: block; width: 100%; min-height: 450px; }
 .location-details {
-    background: var(--cream); padding: 32px; border-radius: var(--radius-lg);
+    background: var(--cream); padding: 32px;
 }
 .location-card {
     display: flex; align-items: flex-start; gap: 16px;
@@ -315,7 +296,7 @@ img { max-width: 100%; display: block; }
 .location-card:last-of-type { border-bottom: none; }
 .location-icon {
     width: 48px; height: 48px; min-width: 48px; background: var(--gold);
-    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     color: var(--brown-dark); font-size: 1.1rem;
 }
 .location-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
@@ -329,13 +310,13 @@ img { max-width: 100%; display: block; }
 }
 .contact-card {
     display: flex; align-items: center; gap: 16px;
-    padding: 20px; background: var(--white); border-radius: var(--radius-md);
+    padding: 20px; background: var(--white);
     margin-bottom: 16px; transition: var(--transition);
 }
 .contact-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .contact-icon {
     width: 48px; height: 48px; min-width: 48px; background: var(--gold);
-    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     color: var(--brown-dark); font-size: 1.1rem;
 }
 .contact-card h4 { font-size: 0.85rem; margin-bottom: 2px; }
@@ -343,17 +324,17 @@ img { max-width: 100%; display: block; }
 .contact-card a:hover { color: var(--gold); }
 .contact-social { display: flex; gap: 12px; margin-top: 8px; }
 .social-link {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 44px; height: 44px;
     background: var(--brown-dark); color: var(--white);
     display: flex; align-items: center; justify-content: center;
     transition: var(--transition); font-size: 1rem;
 }
 .social-link:hover { background: var(--gold); color: var(--brown-dark); transform: translateY(-3px); }
-.contact-form-wrapper { background: var(--white); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.contact-form-wrapper { background: var(--white); padding: 40px; box-shadow: var(--shadow-sm); }
 .form-group { margin-bottom: 16px; }
 .form-group input, .form-group select, .form-group textarea {
     width: 100%; padding: 14px 18px; border: 2px solid var(--brown-pale);
-    border-radius: var(--radius-sm); font-family: var(--font-body);
+    font-family: var(--font-body);
     font-size: 0.9rem; transition: var(--transition);
     background: var(--cream); color: var(--text-dark);
 }
@@ -376,7 +357,7 @@ img { max-width: 100%; display: block; }
 .whatsapp-float {
     position: fixed; bottom: 30px; right: 30px; z-index: 999;
     width: 60px; height: 60px; background: #25D366; color: var(--white);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 1.8rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
     transition: var(--transition);
     animation: whatsappPulse 2s infinite;
@@ -384,7 +365,7 @@ img { max-width: 100%; display: block; }
 .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
 .whatsapp-tooltip {
     position: absolute; right: 70px; background: var(--brown-dark);
-    color: var(--white); padding: 8px 16px; border-radius: 8px;
+    color: var(--white); padding: 8px 16px;
     font-size: 0.8rem; white-space: nowrap; opacity: 0;
     transition: var(--transition); pointer-events: none;
 }
@@ -424,8 +405,6 @@ img { max-width: 100%; display: block; }
     .nav-menu.active { right: 0; }
     .nav-toggle { display: block; z-index: 1001; }
     .section { padding: 60px 0; }
-    .hero-stats { gap: 1rem; }
-    .stat-divider { display: none; }
     .footer-top { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-item.large { grid-column: span 1; }
@@ -433,7 +412,6 @@ img { max-width: 100%; display: block; }
     .hero-content { text-align: center; max-width: 100%; }
     .hero-subtitle { margin: 0 auto 2rem; }
     .hero-actions { justify-content: center; }
-    .hero-stats { justify-content: center; }
 }
 @media (max-width: 480px) {
     .title-line { font-size: 1.8rem; }
