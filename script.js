@@ -1,34 +1,31 @@
-/* ============================================
-   Bremer House - JavaScript
-   Animations, Scroll Effects, Interactions
-   ============================================ */
+ 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Preloader ---
+    
     const preloader = document.getElementById('preloader');
     window.addEventListener('load', () => {
         setTimeout(() => preloader.classList.add('hidden'), 800);
     });
-    // Fallback
+    
     setTimeout(() => preloader.classList.add('hidden'), 3000);
 
-    // --- Hero background load + image error fallback ---
+    
     const heroBgImg = document.querySelector('.hero-bg-img');
     if (heroBgImg) {
         if (heroBgImg.complete && heroBgImg.naturalWidth > 0) heroBgImg.classList.add('loaded');
         else {
             heroBgImg.addEventListener('load', () => heroBgImg.classList.add('loaded'), { once: true });
             heroBgImg.addEventListener('error', () => {
-                // fallback warm interior if primary fails
+                
                 heroBgImg.src = 'https://images.unsplash.com/photo-1616046229478-9901c5536daa?w=1920&q=80&auto=format&fit=crop';
                 heroBgImg.classList.add('loaded');
             }, { once: true });
         }
     }
-    // Global fallback for any broken Unsplash / furniture image
+    
     const FALLBACK_FURNITURE = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&auto=format&fit=crop';
     document.querySelectorAll('img').forEach(img => {
-        // Skip hero already handled
+        
         if (img === heroBgImg) return;
         img.addEventListener('error', () => {
             if (img.dataset.fallbackDone) return;
@@ -36,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             img.classList.add('broken');
             const parent = img.closest('.item-image');
             if (parent) parent.classList.add('has-error');
-            // Replace with fallback but keep layout
-            // Use timeout to allow retry with fallback url
+            
+            
             const isGalleryOrCollection = img.closest('.collection-item, .gallery-item');
             if (isGalleryOrCollection) {
                 img.style.opacity = '0';
@@ -51,16 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Navbar Scroll ---
+    
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
     window.addEventListener('scroll', () => {
-        // Navbar background
+        
         navbar.classList.toggle('scrolled', window.scrollY > 50);
 
-        // Active link
+        
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 120;
@@ -73,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Mobile Nav Toggle ---
+    
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     navToggle.addEventListener('click', () => {
@@ -87,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Scroll Reveal Animations ---
+    
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -102,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- Counter Animation ---
+    
     const counters = document.querySelectorAll('.stat-number');
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -130,13 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 30);
     }
 
-    // --- Collection Filter ---
+    
     const filterBtns = document.querySelectorAll('.filter-btn');
     const collectionItems = document.querySelectorAll('.collection-item');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Active button
+            
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -164,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form ---
+    
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {

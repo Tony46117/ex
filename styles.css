@@ -1,8 +1,4 @@
-/* ============================================
-   Bremer House - Ex-German Furniture & Antiques
-   Theme: Light Brown, Dark Brown, White
-   No rounded corners — sharp, professional look
-   ============================================ */
+ 
 
 :root {
     --brown-dark: #3E2723;
@@ -24,7 +20,7 @@
     --font-body: 'Inter', sans-serif;
 }
 
-/* --- Reset --- */
+ 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
@@ -39,7 +35,7 @@ img { max-width: 100%; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 100px 0; }
 
-/* --- Preloader --- */
+ 
 #preloader {
     position: fixed; inset: 0; z-index: 10000;
     background: var(--brown-dark);
@@ -63,7 +59,7 @@ img { max-width: 100%; display: block; }
 }
 @keyframes loader { 0%{transform:translateX(-100%)} 100%{transform:translateX(400%)} }
 
-/* --- Navbar --- */
+ 
 .navbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     padding: 1rem 0; transition: var(--transition);
@@ -113,14 +109,14 @@ img { max-width: 100%; display: block; }
 .nav-toggle.active span:nth-child(2) { opacity: 0; }
 .nav-toggle.active span:nth-child(3) { bottom: 50%; transform: rotate(-45deg); }
 
-/* --- Hero --- */
+ 
 .hero {
     position: relative; min-height: 100vh;
     min-height: 100dvh;
     min-height: 100svh;
     display: flex;
     align-items: center; overflow: hidden;
-    /* fallback background color while image loads - dark brown */
+     
     background: var(--brown-dark);
 }
 .hero-bg {
@@ -130,7 +126,7 @@ img { max-width: 100%; display: block; }
 .hero-bg-img {
     width: 100%; height: 100%; object-fit: cover;
     object-position: center 30%;
-    /* smooth load */
+     
     opacity: 0; transition: opacity 0.6s ease;
 }
 .hero-bg-img.loaded { opacity: 1; }
@@ -142,7 +138,7 @@ img { max-width: 100%; display: block; }
     position: relative; z-index: 2;
     max-width: 620px; padding: 0 24px;
     text-align: left;
-    /* make sure content centers even when image is tall on phone */
+     
     margin: 0;
 }
 .hero-badge {
@@ -179,7 +175,7 @@ img { max-width: 100%; display: block; }
     50% { transform: translateY(8px); }
 }
 
-/* --- Buttons --- */
+ 
 .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 14px 32px; font-weight: 600;
@@ -192,7 +188,7 @@ img { max-width: 100%; display: block; }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 .btn-full { width: 100%; justify-content: center; }
 
-/* --- Section Header --- */
+ 
 .section-label {
     font-size: 0.75rem; font-weight: 600; color: var(--gold);
     text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.75rem;
@@ -206,7 +202,7 @@ img { max-width: 100%; display: block; }
 .section-header { text-align: center; margin-bottom: 3rem; }
 .section-header .section-desc { margin: 0 auto; }
 
-/* --- Collection --- */
+ 
 .collection { background: var(--white); }
 .collection-filter {
     display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;
@@ -238,7 +234,7 @@ img { max-width: 100%; display: block; }
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.6s ease, opacity 0.3s ease;
 }
-/* placeholder for broken images - shows icon + keeps layout */
+ 
 .item-image::after {
     content: '\f03e';
     font-family: 'Font Awesome 6 Free';
@@ -273,7 +269,7 @@ img { max-width: 100%; display: block; }
 }
 .item-era { font-size: 0.8rem; color: var(--text-light); font-style: italic; }
 
-/* --- Gallery --- */
+ 
 .gallery { background: var(--cream); }
 .gallery-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -302,7 +298,7 @@ img { max-width: 100%; display: block; }
 }
 .gallery-item:hover .gallery-caption { transform: translateY(0); }
 
-/* --- Location --- */
+ 
 .location { background: var(--white); }
 .location-grid {
     display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;
@@ -330,7 +326,7 @@ img { max-width: 100%; display: block; }
 .location-card p { font-size: 0.9rem; color: var(--text-light); }
 .location-coord { font-size: 0.8rem; color: var(--brown-light); font-style: italic; margin-top: 2px; }
 
-/* --- Contact --- */
+ 
 .contact { background: var(--cream); }
 .contact-grid {
     display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px;
@@ -369,7 +365,7 @@ img { max-width: 100%; display: block; }
     outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201,169,110,0.15);
 }
 
-/* --- Footer --- */
+ 
 .footer { background: var(--brown-dark); color: rgba(255,255,255,0.7); padding: 60px 0 0; }
 .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .footer-brand p { margin-top: 1rem; font-size: 0.9rem; line-height: 1.8; }
@@ -380,7 +376,7 @@ img { max-width: 100%; display: block; }
 .footer-links a:hover { color: var(--gold); padding-left: 4px; }
 .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.8rem; }
 
-/* --- WhatsApp Float --- */
+ 
 .whatsapp-float {
     position: fixed; bottom: 30px; right: 30px; z-index: 999;
     width: 60px; height: 60px; background: #25D366; color: var(--white);
@@ -403,7 +399,7 @@ img { max-width: 100%; display: block; }
     100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
 }
 
-/* --- Scroll Animations --- */
+ 
 .reveal-up, .reveal-left, .reveal-right {
     opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -414,7 +410,7 @@ img { max-width: 100%; display: block; }
     opacity: 1; transform: translate(0, 0);
 }
 
-/* --- Responsive --- */
+ 
 @media (max-width: 992px) {
     .location-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
@@ -436,7 +432,7 @@ img { max-width: 100%; display: block; }
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-item.large { grid-column: span 1; }
     .contact-form-wrapper { padding: 24px; }
-    /* ---- Phone-optimized hero ---- */
+     
     .hero {
         min-height: 100svh;
         min-height: 100dvh;
@@ -445,11 +441,11 @@ img { max-width: 100%; display: block; }
     }
     .hero-bg-img {
         object-position: center center;
-        /* ensure vertical crop keeps furniture visible on portrait */
+         
         object-position: 50% 38%;
     }
     .hero-overlay {
-        /* stronger overlay on phone for text readability in daylight */
+         
         background: linear-gradient(180deg, rgba(62,39,35,0.78) 0%, rgba(62,39,35,0.82) 45%, rgba(62,39,35,0.88) 100%);
     }
     .hero-content { text-align: center; max-width: 100%; margin: 0 auto; padding: 0 20px; }
@@ -457,7 +453,7 @@ img { max-width: 100%; display: block; }
     .hero-badge { font-size: 0.62rem; letter-spacing: 2px; padding: 5px 14px; }
     .hero-actions { justify-content: center; gap: 12px; }
     .hero-scroll { bottom: 1.2rem; }
-    /* reduce parallax slide on phone */
+     
     .hero-content { transform: none !important; }
 }
 @media (max-width: 480px) {
